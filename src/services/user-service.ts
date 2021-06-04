@@ -17,7 +17,6 @@ const create = async (dni: string, name: string, password: string) => {
 const login = async (dni: string, password: string) => {
   const { jwtOptions } = config;
     const user = await userRepository.getByUserDni(dni);
-    console.log("user",user)
     if(!user || user.Password !== password){
         throw new Unauthorize(Message.loginInvalid());
     }
@@ -28,7 +27,7 @@ const login = async (dni: string, password: string) => {
           expiresIn: jwtOptions.expires,
         }
       );
-    return { token }
+    return { user, token }
 } 
 
 module.exports = { create, login }
