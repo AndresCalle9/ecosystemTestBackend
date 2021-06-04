@@ -2,8 +2,12 @@ const express = require("express");
 const cors = require("cors");
 import { Request, Response, NextFunction } from "express";
 const mongoDB = require("./database/database");
+const userRoutes = require("../config/routes/user-routes");
 
-//inicializations
+// // Import routes
+// import UserRoutes from '../config/routes/user-routes'
+
+// Inicializations
 const app = express();
 
 // Setings
@@ -21,7 +25,7 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
   next();
 });
 
-app.run = async () => {
+app.connect = async () => {
   console.log("Connecting to MondoDB...");
   await mongoDB.connect();
 };
@@ -32,10 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-// app.use(require('./routes/order.routes'))
+app.get('/' , (req: Request,res: Response) => res.send("hola"))
+app.use("/api", userRoutes.routes());
 
-// Static files
-
-// Error handlers
 
 module.exports = app;
