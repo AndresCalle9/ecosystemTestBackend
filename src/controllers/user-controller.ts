@@ -13,4 +13,24 @@ const create = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-module.exports = { create };
+const getAccounts = async  (req:Request, res: Response, next: NextFunction) => {
+  try {
+    const { key } = req.params;
+    const accounts = await userService.getAccounts(key);
+    return res.status(201).json({accounts});
+  } catch (error) {
+    next(error);
+  }
+}
+
+const getTransactions = async (req:Request, res: Response, next: NextFunction) => {
+try {
+  const { key, dni } = req.params;
+  const transactions = await userService.getTransactions(key,dni);
+  return res.status(201).json({transactions});
+}catch(error) {
+  next(error)
+}
+}
+
+module.exports = { create, getAccounts, getTransactions };

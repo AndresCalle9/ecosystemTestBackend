@@ -8,6 +8,10 @@ const routes = () => {
 
     router.post("/user/login", loginController.login);
     router.post("/user/create", userController.create)
+    router.get("/user/accounts/:key", userController.getAccounts)
+    router.get("/user/accounts/transactions/:key/:dni", userController.getTransactions)
+
+
 
 
     return router;

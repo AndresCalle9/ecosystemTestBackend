@@ -36,7 +36,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-app.get('/' , (req: Request,res: Response) => res.send("hola"))
+app.get('/' , (req: Request,res: Response) => res.send("Ecosystem Test"))
 app.use("/api", userRoutes.routes());
 
 

@@ -5,7 +5,7 @@ class Message {
     static unauthorized = () => `Unauthorized`;
     static tokenNotValid = () => `Token is not valid or has been expired`;
     static loginInvalid = () => `invalid dni or password.`;
-    static generalError = () => "Somenthin went wrong. Please try again";
+    static generalError = () => "Somenthing went wrong. Please try again";
   }
   
   module.exports = { Message };

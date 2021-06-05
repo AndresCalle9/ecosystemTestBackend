@@ -30,4 +30,21 @@ const login = async (dni: string, password: string) => {
     return { user, token }
 } 
 
-module.exports = { create, login }
+const getAccounts = async (dni: string) => {
+  const accounts = await userRepository.getAccountByDni(dni);
+  if(!accounts){
+    throw new Conflict(Message.generalError());
+}
+  return {accounts}
+}
+
+const getTransactions = async (id:string, dni:string) => {
+  const transactions = await userRepository.getTransactionById(id,dni);
+  if(!transactions){
+    throw new Conflict(Message.generalError());
+}
+  return {transactions}
+
+}
+
+module.exports = { create, login, getAccounts, getTransactions }
