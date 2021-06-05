@@ -46,5 +46,11 @@ const getTransactions = async (id:string, dni:string) => {
   return {transactions}
 
 }
-
-module.exports = { create, login, getAccounts, getTransactions }
+const getTransactionDetails = async (id:string, dni:string, acc:string) => {
+  const transactionDetails = await userRepository.getTransactionDetailsById(id,dni,acc);
+  if(!transactionDetails){
+    throw new Conflict(Message.generalError());
+}
+  return {transactionDetails}
+}
+module.exports = { create, login, getAccounts, getTransactions, getTransactionDetails }

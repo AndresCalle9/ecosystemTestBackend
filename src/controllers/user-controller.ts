@@ -33,4 +33,14 @@ try {
 }
 }
 
-module.exports = { create, getAccounts, getTransactions };
+const getTransactionDetails = async (req:Request, res:Response, next: NextFunction) => {
+  try {
+  const { key, dni, acc } = req.params;
+  const transactionDetails = await userService.getTransactionDetails(key,dni,acc);
+  return res.status(201).json({transactionDetails});
+  }catch (error){
+    next(error)
+  }
+}
+
+module.exports = { create, getAccounts, getTransactions, getTransactionDetails };
