@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const { UserDb } = require('../entities/user-entity');
-const { calculateAccountMean, getDatesBetweenRange } = require("../utils/functions.js");
+const { calculateAccountMean, getDatesBetweenRange } = require("../utils/functions");
 const getByUserDni = (dni) => __awaiter(void 0, void 0, void 0, function* () {
     return UserDb.findOne({ Dni: dni });
 });

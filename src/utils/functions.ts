@@ -1,5 +1,5 @@
 
-  const calculateAccountMean = (items) => {
+  export const calculateAccountMean = (items:Array<any>) => {
     try {
       let accoutnMean = 0
       items.forEach(item => {
@@ -11,7 +11,7 @@
     }
   }
 
-  const validateDate = (rangeMin, rangeMax, date) => {
+  export const validateDate = (rangeMin:string, rangeMax:string, date:string) => {
     try {
         let validated = false;
         if (Date.parse(date) > Date.parse(rangeMin) && Date.parse(date) < Date.parse(rangeMax)) {
@@ -23,7 +23,7 @@
     }
 }
 
-const getDatesBetweenRange = (initial, end, transactions) => {
+export const getDatesBetweenRange = (initial:string, end:string, transactions:Array<any>) => {
   let ordersBetweenDates = [];
   for (let element of transactions) {
     const validationDate = validateDate(initial, end, element.date)

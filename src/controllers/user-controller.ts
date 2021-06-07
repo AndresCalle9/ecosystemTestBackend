@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction, response } from "express";
-import { getNameOfJSDocTypedef, isNotEmittedStatement } from "typescript";
 
 const userService = require("../services/user-service");
 

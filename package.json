@@ -7,7 +7,7 @@
     "ts:node": "ts-node src/index.ts",
     "clean": "rm -rf build",
     "build": "tsc",
-    "start": "ts-node src/config/server.ts",
+    "start": "ts-node build/src/config/server.js",
     "dev": "nodemon ",
     "postinstall": "npm run build"
   },

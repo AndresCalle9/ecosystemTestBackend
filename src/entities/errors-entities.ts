@@ -1,17 +1,22 @@
 class Unauthorize extends Error {
-    constructor(error) {
+  data:string;
+  statusCode:number;
+
+    constructor(error:string) {
       super(error);
   
-      this.data = { error };
+      this.data =  error ;
       this.statusCode = 401;
     }
   }
 
   class Conflict extends Error {
-    constructor(error) {
+    data:string;
+    statusCode:number;
+    constructor(error:string) {
       super(error);
   
-      this.data = { error };
+      this.data =  error ;
       this.statusCode = 409;
     }
   }

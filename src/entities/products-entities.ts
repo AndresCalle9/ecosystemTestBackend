@@ -1,7 +1,14 @@
-const mongoose = require("mongoose");
+const mongoose2 = require("mongoose");
 
 class Product {
-  constructor(userName, userDni, currency, tax, productName, status) {
+  UserName:string;
+  UserDni:string;
+  Currency:string;
+  Tax:Number;
+  ProductName:string;
+  Status:string;
+  
+  constructor(userName:string, userDni:string, currency:string, tax:number, productName:string, status:string) {
     this.UserName = userName;
     this.UserDni = userDni;
     this.Currency = currency;
@@ -12,7 +19,7 @@ class Product {
   }
 }
 
-const ProductDb = mongoose.model(
+const ProductDb = mongoose2.model(
   "Product",
   {
     UserName: String,

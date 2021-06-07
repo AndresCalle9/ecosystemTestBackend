@@ -1,5 +1,5 @@
 const { UserDb } = require('../entities/user-entity')
-const {calculateAccountMean, getDatesBetweenRange} = require("../utils/functions.js")
+const {calculateAccountMean, getDatesBetweenRange} = require("../utils/functions")
 
 const getByUserDni = async (dni: string) => {
     return UserDb.findOne({ Dni: dni });
@@ -37,7 +37,7 @@ const getTransactionDetailsById = async (id:string, dni:string, acc:string) => {
   return details
 }
 
-const getMeanTransactionsAccount = async (id:string, dni:string, initial:Date, end:Date) => {
+const getMeanTransactionsAccount = async (id:string, dni:string, initial:string, end:string) => {
   const transactions = await getTransactionById(id,dni)
   let ordersBetweenDates = getDatesBetweenRange(initial, end, transactions);
   const mean = await calculateAccountMean(ordersBetweenDates)
