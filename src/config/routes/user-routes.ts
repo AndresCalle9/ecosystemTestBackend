@@ -11,7 +11,7 @@ const routes = () => {
     router.get("/user/accounts/:key", userController.getAccounts)
     router.get("/user/accounts/transactions/:key/:dni", userController.getTransactions)
     router.get("/user/accounts/transaction/:key/:dni/:acc", userController.getTransactionDetails)
-    router.post("/user/accounts/transactions/:key/:dni", userController.getMeanTransactionsAccount)
+    router.post("/user/accounts/transaction/mean/:key/:dni", userController.getMeanTransactionsAccount)
 
     return router;
 }
