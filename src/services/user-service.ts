@@ -55,11 +55,11 @@ const getTransactionDetails = async (id:string, dni:string, acc:string) => {
 }
 
 const getMeanTransactionsAccount = async (id:string, dni:string,initial:Date, end:Date) =>{
-  const mean = await userRepository.getMeanTransactionsAccount(id,dni,initial, end);
+  const {mean, currency} = await userRepository.getMeanTransactionsAccount(id,dni,initial, end);
   if(!mean){
     throw new Conflict(Message.generalError());
 }
-  return {mean}
+  return {mean, currency}
 }
 
 

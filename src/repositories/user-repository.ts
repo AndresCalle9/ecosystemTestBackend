@@ -41,7 +41,8 @@ const getMeanTransactionsAccount = async (id:string, dni:string, initial:Date, e
   const transactions = await getTransactionById(id,dni)
   let ordersBetweenDates = getDatesBetweenRange(initial, end, transactions);
   const mean = await calculateAccountMean(ordersBetweenDates)
-  return mean
+  const currency = transactions[0].currency;
+  return {mean, currency}
 }
 
 

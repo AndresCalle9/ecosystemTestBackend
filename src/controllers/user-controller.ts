@@ -50,8 +50,8 @@ const getMeanTransactionsAccount = async (req:Request, res: Response, next: Next
     const dates = req.body;
     const { key, dni } = req.params;
     const { initial, end } = dates;
-    const {mean} = await userService.getMeanTransactionsAccount(key,dni,initial,end);
-    return res.status(201).json({mean});
+    const {mean, currency} = await userService.getMeanTransactionsAccount(key,dni,initial,end);
+    return res.status(201).json({mean, currency});
   } catch(error){
     next(error)
   }
