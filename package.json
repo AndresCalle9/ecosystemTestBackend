@@ -8,7 +8,9 @@
     "clean": "rm -rf build",
     "build": "tsc",
     "start": "node build/src/index.js",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "postinstall": "tsc",
+    "watch-node": "nodemon build/src/index.js"
   },
   "keywords": [],
   "author": "",
