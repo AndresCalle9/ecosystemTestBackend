@@ -8,7 +8,7 @@
     "clean": "rm -rf build",
     "build": "tsc",
     "start": "ts-node src/config/server.ts",
-    "dev": "nodemon"
+    "dev": "nodemon "
   },
   "keywords": [],
   "author": "",
