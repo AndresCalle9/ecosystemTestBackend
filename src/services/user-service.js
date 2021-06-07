@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+const jwt = require("jsonwebtoken");
 const userRepository = require('../repositories/user-repository');
 const { Unauthorize, Conflict } = require("../entities/errors-entities");
 const { Message } = require("../entities/message-entity");
@@ -6,7 +6,7 @@ const { config } = require("../config/environments/development");
 const { User } = require("../entities/user-entity")
 
 
-const create = async (dni: string, name: string, password: string) => {
+const create = async (dni, name, password) => {
   const userResponse = await userRepository.getByUserDni(dni);
   if (userResponse) throw new Conflict(Message.userExist(dni));
   const user = new User(name, dni, password);
@@ -14,7 +14,7 @@ const create = async (dni: string, name: string, password: string) => {
 };
 
 
-const login = async (dni: string, password: string) => {
+const login = async (dni, password) => {
   const { jwtOptions } = config;
     const user = await userRepository.getByUserDni(dni);
     if(!user || user.Password !== password){
@@ -30,7 +30,7 @@ const login = async (dni: string, password: string) => {
     return { user, token }
 } 
 
-const getAccounts = async (dni: string) => {
+const getAccounts = async (dni) => {
   const accounts = await userRepository.getAccountByDni(dni);
   if(!accounts){
     throw new Conflict(Message.generalError());
@@ -38,7 +38,7 @@ const getAccounts = async (dni: string) => {
   return {accounts}
 }
 
-const getTransactions = async (id:string, dni:string) => {
+const getTransactions = async (id, dni) => {
   const transactions = await userRepository.getTransactionById(id,dni);
   if(!transactions){
     throw new Conflict(Message.generalError());
@@ -46,7 +46,7 @@ const getTransactions = async (id:string, dni:string) => {
   return {transactions}
 
 }
-const getTransactionDetails = async (id:string, dni:string, acc:string) => {
+const getTransactionDetails = async (id, dni, acc) => {
   const transactionDetails = await userRepository.getTransactionDetailsById(id,dni,acc);
   if(!transactionDetails){
     throw new Conflict(Message.generalError());
@@ -54,7 +54,7 @@ const getTransactionDetails = async (id:string, dni:string, acc:string) => {
   return {transactionDetails}
 }
 
-const getMeanTransactionsAccount = async (id:string, dni:string,initial:Date, end:Date) =>{
+const getMeanTransactionsAccount = async (id, dni,initial, end) =>{
   const {mean, currency} = await userRepository.getMeanTransactionsAccount(id,dni,initial, end);
   if(!mean){
     throw new Conflict(Message.generalError());

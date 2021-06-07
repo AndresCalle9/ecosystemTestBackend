@@ -1,8 +1,7 @@
 class Unauthorize extends Error {
-  data:string;
-  statusCode:number;
 
-    constructor(error:string) {
+
+    constructor(error) {
       super(error);
   
       this.data =  error ;
@@ -11,9 +10,8 @@ class Unauthorize extends Error {
   }
 
   class Conflict extends Error {
-    data:string;
-    statusCode:number;
-    constructor(error:string) {
+   
+    constructor(error) {
       super(error);
   
       this.data =  error ;

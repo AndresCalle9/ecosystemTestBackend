@@ -1,8 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-import { Request, Response, NextFunction } from "express";
 const mongoDB = require("./database/database");
-const userRoutes = require("../config/routes/user-routes");
+const userRoutes = require("./routes/user-routes");
 
 // // Import routes
 // import UserRoutes from '../config/routes/user-routes'
@@ -12,7 +11,7 @@ const app = express();
 
 // Setings
 app.set("port", process.env.PORT || 5000);
-app.use(function (req: Request, res: Response, next: NextFunction) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -36,7 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-app.get('/' , (req: Request,res: Response) => res.send("Ecosystem Test"))
+app.get('/' , (req,res) => res.send("Ecosystem Test"))
 app.use("/api", userRoutes.routes());
 
 

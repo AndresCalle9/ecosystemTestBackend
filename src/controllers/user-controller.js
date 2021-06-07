@@ -1,8 +1,7 @@
-import { Request, Response, NextFunction} from "express";
 
 const userService = require("../services/user-service");
 
-const create = async (req: Request, res: Response, next: NextFunction) => {
+const create = async (req, res, next) => {
   try {
     const data = req.body;
     const { dni, name, password } = data;
@@ -13,7 +12,7 @@ const create = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const getAccounts = async  (req:Request, res: Response, next: NextFunction) => {
+const getAccounts = async  (req, res, next) => {
   try {
     const { key } = req.params;
     const {accounts} = await userService.getAccounts(key);
@@ -23,7 +22,7 @@ const getAccounts = async  (req:Request, res: Response, next: NextFunction) => {
   }
 }
 
-const getTransactions = async (req:Request, res: Response, next: NextFunction) => {
+const getTransactions = async (req, res, next) => {
 try {
   const { key, dni } = req.params;
   const {transactions} = await userService.getTransactions(key,dni);
@@ -33,7 +32,7 @@ try {
 }
 }
 
-const getTransactionDetails = async (req:Request, res:Response, next: NextFunction) => {
+const getTransactionDetails = async (req, res, next) => {
   try {
   const { key, dni, acc } = req.params;
   const {transactionDetails} = await userService.getTransactionDetails(key,dni,acc);
@@ -43,7 +42,7 @@ const getTransactionDetails = async (req:Request, res:Response, next: NextFuncti
   }
 }
 
-const getMeanTransactionsAccount = async (req:Request, res: Response, next: NextFunction) => {
+const getMeanTransactionsAccount = async (req, res, next) => {
   try {
 
     const dates = req.body;

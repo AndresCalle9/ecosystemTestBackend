@@ -1,8 +1,7 @@
-import { Request, Response, NextFunction } from "express";
 
 const userService = require('../services/user-service')
 
-const login = async (req: Request, res: Response, next: NextFunction) => {
+const login = async (req, res, next) => {
     try {
         const {dni, password} = req.body;
         const response = await userService.login(dni, password);

@@ -1,14 +1,8 @@
 const mongoose2 = require("mongoose");
 
 class Product {
-  UserName:string;
-  UserDni:string;
-  Currency:string;
-  Tax:Number;
-  ProductName:string;
-  Status:string;
   
-  constructor(userName:string, userDni:string, currency:string, tax:number, productName:string, status:string) {
+  constructor(userName, userDni, currency, tax, productName, status) {
     this.UserName = userName;
     this.UserDni = userDni;
     this.Currency = currency;
