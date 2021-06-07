@@ -6,9 +6,10 @@
   "scripts": {
     "ts:node": "ts-node src/index.ts",
     "clean": "rm -rf build",
-    "build": "npm install typescript & tsc",
+    "build": "tsc",
     "start": "ts-node src/config/server.ts",
-    "dev": "nodemon "
+    "dev": "nodemon ",
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",
