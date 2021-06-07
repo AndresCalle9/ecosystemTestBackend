@@ -10,14 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const userService = require('../services/user-service');
-const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { dni, password } = req.body;
         const response = yield userService.login(dni, password);
         return res.status(200).json(response);
     }
     catch (error) {
-        next(error);
+        // next(error)
+        return res.json({ message: error.message });
     }
 });
 module.exports = { login };

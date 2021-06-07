@@ -19,12 +19,18 @@ const userRoutes = require("../config/routes/user-routes");
 const app = express();
 // Setings
 app.set("port", process.env.PORT || 5000);
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, OPTIONS, HEAD, POST, PUT, DELETE");
-    next();
-});
+// app.use(function (req: Request, res: Response, next: NextFunction) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   res.header(
+//     "Access-Control-Allow-Methods",
+//     "GET, OPTIONS, HEAD, POST, PUT, DELETE"
+//   );
+//   next();
+// });
 app.connect = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Connecting to MondoDB...");
     yield mongoDB.connect();
@@ -34,6 +40,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // Routes
-app.get('/', (req, res) => res.send("Ecosystem Test"));
+// app.get('/' , (req: Request,res: Response) => res.send("Ecosystem Test"))
 app.use("/api", userRoutes.routes());
 module.exports = app;
