@@ -71,8 +71,12 @@
   },
   "include": [
     "./src/**/*.ts",   
-  ],
+ "typings/index.d.ts"  ],
   "exclude": [
     "node_modules"
+  ],
+  "typeRoots": [
+    "./typings",
+    "./node_modules/@types/"
   ]
 }
