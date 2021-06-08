@@ -62,5 +62,19 @@ const getMeanTransactionsAccount = async (id, dni,initial, end) =>{
   return {mean, currency}
 }
 
+const newProduct = async (sku, dni) => {
+    const {status} = await userRepository.newProduct(sku, dni);
+    if(!status){
+      throw new Conflict(Message.generalError());
+  }
+    return {status};
+}
 
-module.exports = { create, login, getAccounts, getTransactions, getTransactionDetails, getMeanTransactionsAccount }
+const getUserProducts = async (dni) => {
+  const products = await userRepository.getUserProducts(dni);
+  if(!products){
+    throw new Conflict(Message.generalError());
+}
+  return {products}
+}
+module.exports = { create, login, getAccounts, getTransactions, getTransactionDetails, getMeanTransactionsAccount, newProduct, getUserProducts }

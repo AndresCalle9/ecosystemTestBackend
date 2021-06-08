@@ -1,4 +1,5 @@
 const { UserDb } = require('../entities/user-entity')
+const { ProductDb } = require('../entities/product-entity')
 const {calculateAccountMean, getDatesBetweenRange} = require("../utils/functions")
 
 const getByUserDni = async (dni) => {
@@ -45,6 +46,25 @@ const getMeanTransactionsAccount = async (id, dni, initial, end) => {
   return {mean, currency}
 }
 
+const newProduct = async (sku, dni) => {
+    const user = await getByUserDni(dni);
+    const product = await ProductDb.findOne({ Sku: sku });
+    user.Products.push({
+      "product": product,
+      "status": "pending",
+      "date": new Date()
+    })
+    await UserDb.findOneAndUpdate({ _id: user._id }, user)
+    const status = "Ok";
+
+  return {status};
+
+}
+
+const getUserProducts = async (dni) => {
+  const user = await getByUserDni(dni)
+  return user.Products
+}
 
 
-module.exports = {create, getByUserDni, getAccountByDni, getTransactionById, getTransactionDetailsById, getMeanTransactionsAccount}
+module.exports = {create, getByUserDni, getAccountByDni, getTransactionById, getTransactionDetailsById, getMeanTransactionsAccount, newProduct,getUserProducts}

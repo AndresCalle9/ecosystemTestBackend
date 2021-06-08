@@ -44,7 +44,6 @@ const getTransactionDetails = async (req, res, next) => {
 
 const getMeanTransactionsAccount = async (req, res, next) => {
   try {
-
     const dates = req.body;
     const { key, dni } = req.params;
     const { initial, end } = dates;
@@ -53,7 +52,26 @@ const getMeanTransactionsAccount = async (req, res, next) => {
   } catch(error){
     next(error)
   }
-
+}
+const newProduct = async (req, res, next) => {
+  try {
+    const {sku} = req.body
+    const {key} = req.params;
+    const {status} = await userService.newProduct(sku, key);
+    return res.status(201).json({status});
+  }catch (error){
+    next(error)
+  }
 }
 
-module.exports = { create, getAccounts, getTransactions, getTransactionDetails, getMeanTransactionsAccount};
+const getUserProducts = async (req, res, next) => {
+  try{
+    const {key} = req.params
+    const {products} = await userService.getUserProducts(key)
+    return res.status(201).json({products})
+  }catch (error){
+    next(error)
+  }
+}
+
+module.exports = { create, getAccounts, getTransactions, getTransactionDetails, getMeanTransactionsAccount, newProduct, getUserProducts};

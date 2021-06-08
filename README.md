@@ -20,7 +20,7 @@ Requisito: Tener instalado docker y node js en la máquina.
 2. Situarse en la carpeta raíz y ejecutar npm install para la instalación de dependencias.
 3. Situarse en la carpeta raíz y ejecutar el comando npm run dev
 4. Abrir en el navegador http://localhost:{DefaultPort}/api. DefaultPort: 5000
-5. Aplicación lista para su uso! Para esto se proporciona un front básico en: XXXXXXX. De igual manera, puede usarse en cualquier programa de peticiones HTTP.
+5. Aplicación lista para su uso! Para esto se proporciona un front básico en: https://ecosystem-test-frontend.vercel.app/. De igual manera, puede usarse en cualquier programa de peticiones HTTP.
 
 Rutas y estructura:
 1) http://localhost:5000/api/user/login. Realizar el login, ruta tipo POST. Deben enviarse los siquientes datos:
@@ -64,13 +64,74 @@ Adicionalmente, debe enviarse información como la siguiente:
 	"end":"2021/06/08"
 }
 
+7) http://localhost:5000/api/newproduct/create. Esta es la ruta utilizada para la creación de un nuevo producto. Se debe enciar la siguiente información. La ruta es tipo POST
+
+{
+	"currency":"COP",
+	"tax":0.85,
+	"productName":"Leasing de vivienda",
+	"sku":"CO04"
+}
+
+8) http://localhost:5000/api/products. Ruta para consultar los productos ofrecidos por el banco. Es una ruta tipo GET.
+
+9) http://localhost:5000/api/user/requestnewproduct/:key. Esta es una ruta tipo POST para solicitud de un nuevo producto. Key hace referencia al dni del usuario que solicita. Debe enviarse la sigueinte información:
+
+{
+	"sku":"CO03"
+}
+Sku, hace referencia al cósigo único del producto a solicitar.
+Con lo anterior la ruta queda: http://localhost:5000/api/user/requestnewproduct/1037620268
+
+10) http://localhost:5000/api/user/products/:key. Esta es la ruta para consultar los productos solicitados por un usuario. Es una ruta tipo GET. Key hace referencia al dni del usuario a consultar.
+
+Con lo anterior la ruta queda: http://localhost:5000/api/user/products/1037620268
+
+Adicionalmente, el servidor se encuentra desplegado en la siguiente ruta:
+
+https://ecosystemtest-api.herokuapp.com/
+
+POR LO TANTO: se peude reemplazar por el http://localhost:5000 para su funcionamiento.
+
 NOTAS:
 1. Se recomienda primero usar el recurso /user/create para creación de un usuario. Sin embargo, la información bancaria estará vacia.
 
 ESTRUCTURA DE DATOS MONGO DB Y DATOS PARA EJEMPLOS:
 
+Usuarios:
+
 {
-    "Products": [],
+    "Products": [{
+        "product": {
+            "_id": {
+                "$oid": "60bebd820def167f7b0deca6"
+            },
+            "Currency": "COP",
+            "ProductName": "Crédito ágil",
+            "Tax": 1.23,
+            "Sku": "CO01",
+            "__v": 0
+        },
+        "status": "pending",
+        "date": {
+            "$date": "2021-06-08T01:19:15.369Z"
+        }
+    }, {
+        "product": {
+            "_id": {
+                "$oid": "60bebd6a0def167f7b0deca5"
+            },
+            "Currency": "COP",
+            "ProductName": "Tarjeta de crédito",
+            "Tax": 1.98,
+            "Sku": "CO02",
+            "__v": 0
+        },
+        "status": "pending",
+        "date": {
+            "$date": "2021-06-08T01:28:23.763Z"
+        }
+    }],
     "Accounts": [{
         "id": "60bb9b0e4c573e38eb9395bf",
         "amount": 1577896,
@@ -141,6 +202,37 @@ ESTRUCTURA DE DATOS MONGO DB Y DATOS PARA EJEMPLOS:
     "Password": "123456",
     "__v": 0
 }
+
+Productos:
+{
+    "Currency": "COP",
+    "ProductName": "Crédito ágil",
+    "Tax": 1.23,
+    "Sku": "CO01",
+    "__v": 0
+},
+{
+    "Currency": "COP",
+    "ProductName": "Tarjeta de crédito",
+    "Tax": 1.98,
+    "Sku": "CO02",
+    "__v": 0
+},
+{
+    "Currency": "COP",
+    "ProductName": "Cuenta de ahorros",
+    "Tax": 0,
+    "Sku": "CO03",
+    "__v": 0
+},
+{
+    "Currency": "COP",
+    "ProductName": "Leasing de vivienda",
+    "Tax": 0.85,
+    "Sku": "CO04",
+    "__v": 0
+}
+
 
 Autor
 Andrés Calle Uribe.

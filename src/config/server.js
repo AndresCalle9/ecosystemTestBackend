@@ -1,10 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoDB = require("./database/database");
-const userRoutes = require("./routes/user-routes");
-
-// // Import routes
-// import UserRoutes from '../config/routes/user-routes'
+const routes = require("./routes/routes");
 
 // Inicializations
 const app = express();
@@ -36,7 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.get('/' , (req,res) => res.send("Ecosystem Test"))
-app.use("/api", userRoutes.routes());
+app.use("/api", routes.routes());
 
 
 module.exports = app;
